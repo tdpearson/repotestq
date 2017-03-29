@@ -16,7 +16,7 @@ def random_delay_in(msg):
     return msg
 
 @task()
-def launch()
+def launch():
     logging.info("launching...")
 
     taskid = signature("repotestq.tasks.tasks.random_delay_in", ("first")).delay().id
