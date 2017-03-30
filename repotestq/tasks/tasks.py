@@ -18,8 +18,8 @@ def random_delay_in(*args, **kwargs):
     sleep(seconds)
     return {"status": "Sub task Complete"}
 
-@task()
-def launch():
+
+def _launch():
     logging.info("launching...")
 
     first = signature("repotestq.tasks.tasks.random_delay_in")
@@ -36,3 +36,8 @@ def launch():
     logging.info("finished...")
 
     return {"status": "SUCCESS"}
+
+
+@task()
+def launch():
+    return _launch()
