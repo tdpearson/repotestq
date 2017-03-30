@@ -16,7 +16,7 @@ def random_delay_in(*args, **kwargs):
     logging.info(kwargs)
     logging.info("sleeping for: %s" % seconds)
     sleep(seconds)
-    return True
+    return {"status": "SUCCESS"}
 
 @task()
 def launch():
