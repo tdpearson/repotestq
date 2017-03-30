@@ -27,9 +27,12 @@ def launch():
     third = signature("repotestq.tasks.tasks.random_delay_in") 
     fourth = signature("repotestq.tasks.tasks.random_delay_in")
 
-    workflow = chain(first("first"), second("second"), third("third"), fourth("fourth"))
-    workflow.apply_async()
+    workflow = (first | second | third | fourth)
     
+    res = workflow("testing").get()
+
+    logging.info(res)
+   
     logging.info("finished...")
 
     return {"status": "SUCCESS"}
