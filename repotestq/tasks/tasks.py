@@ -1,5 +1,6 @@
 from celery.task import task
 from celery import Celery
+from celery import chain
 from celery import signature
 from time import sleep
 from random import randint
@@ -19,9 +20,11 @@ def random_delay_in(msg):
 def launch():
     logging.info("launching...")
 
-    taskid = signature("repotestq.tasks.tasks.random_delay_in", ("first")).delay().id
-    signature("repotestq.tasks.tasks.random_delay_in", ("second")).delay()
-    signature("repotestq.tasks.tasks.random_delay_in", ("third")).delay() 
-    signature("repotestq.tasks.tasks.random_delay_in", ("fourth")).delay()
+    first = signature("repotestq.tasks.tasks.random_delay_in")
+    second = signature("repotestq.tasks.tasks.random_delay_in")
+    third = signature("repotestq.tasks.tasks.random_delay_in") 
+    fourth = signature("repotestq.tasks.tasks.random_delay_in")
+
+    first.apply_async(args=("first"), link=chain(second("second"), third("third"), fourth("fourth")))
 
     logging.info("finished...")
