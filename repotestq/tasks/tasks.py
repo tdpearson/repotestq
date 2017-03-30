@@ -31,7 +31,7 @@ def launch():
 
     workflow = (first | second | third | fourth)
     
-    res = workflow("testing").get() #FIXME: remove get()!
+    res = workflow("testing")
 
     logging.info(res)
    
