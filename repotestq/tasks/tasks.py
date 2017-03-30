@@ -29,7 +29,7 @@ def launch():
 
     workflow = (first | second | third | fourth)
     
-    res = workflow("testing").get()
+    res = workflow("testing")
 
     logging.info(res)
    
