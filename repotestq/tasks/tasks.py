@@ -27,6 +27,8 @@ def launch():
     third = signature("repotestq.tasks.tasks.random_delay_in") 
     fourth = signature("repotestq.tasks.tasks.random_delay_in")
 
-    first.apply_async(args=("first"), link=chain(second("second"), third("third"), fourth("fourth")))
-
+    res = first.apply_async(args=("first"), link=chain(second("second"), third("third"), fourth("fourth")))
+    
     logging.info("finished...")
+
+    return res
