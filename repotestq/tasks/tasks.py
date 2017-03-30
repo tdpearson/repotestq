@@ -12,8 +12,8 @@ logging.basicConfig(level=logging.INFO)
 @task()
 def random_delay_in(*args, **kwargs):
     seconds =  randint(10,60)
-    logging.info("args for: %s" % args)
-    logging.info("kwargs for: %s" % kwargs)
+    logging.info(args)
+    logging.info(kwargs)
     logging.info("sleeping for: %s" % seconds)
     sleep(seconds)
     return True
