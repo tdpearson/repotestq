@@ -12,6 +12,7 @@ logging.basicConfig(level=logging.INFO)
 @task()
 def random_delay_in(*args, **kwargs):
     seconds =  randint(10,60)
+    logging.info(chain.parent.info, chain.parent.id) 
     logging.info(args)
     logging.info(kwargs)
     logging.info("sleeping for: %s" % seconds)
@@ -19,7 +20,8 @@ def random_delay_in(*args, **kwargs):
     return {"status": "Sub task Complete"}
 
 
-def _launch():
+@task()
+def launch():
     logging.info("launching...")
 
     first = signature("repotestq.tasks.tasks.random_delay_in")
@@ -29,7 +31,7 @@ def _launch():
 
     workflow = (first | second | third | fourth)
     
-    res = workflow("testing").get()
+    res = workflow("testing").get() #FIXME: remove get()!
 
     logging.info(res)
    
@@ -38,6 +40,3 @@ def _launch():
     return {"status": "SUCCESS"}
 
 
-@task()
-def launch():
-    return _launch()
