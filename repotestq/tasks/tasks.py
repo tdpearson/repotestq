@@ -23,7 +23,7 @@ def random_delay_in(self,*args, **kwargs):
 def launch():
     logging.info("launching...")
 
-    first = signature("repotestq.tasks.tasks.random_delay_in")
+    first = signature("repotestq.tasks.tasks.random_delay_in", kwargs={'first': True})
     second = signature("repotestq.tasks.tasks.random_delay_in", args=("987654321"))
     third = signature("repotestq.tasks.tasks.random_delay_in", kwargs={'mmsid': "987654321"}) 
     fourth = signature("repotestq.tasks.tasks.random_delay_in")
