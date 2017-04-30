@@ -42,3 +42,8 @@ def launch():
 @task()
 def echo(text):
     return text + " - ping - pong!"
+
+
+@task()
+def new_echo(text):
+    return text + " - new text..."
