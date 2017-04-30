@@ -39,3 +39,6 @@ def launch():
     return {"status": "SUCCESS"}
 
 
+@task()
+def echo(text):
+    return text
