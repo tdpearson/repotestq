@@ -41,4 +41,4 @@ def launch():
 
 @task()
 def echo(text):
-    return text + " - pong!"
+    return text + " - ping - pong!"
