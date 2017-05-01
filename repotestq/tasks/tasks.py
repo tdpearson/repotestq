@@ -46,4 +46,4 @@ def echo(text):
 
 @task()
 def new_echo(text):
-    return text + " - new text..."
+    return text + " - not new text..."
